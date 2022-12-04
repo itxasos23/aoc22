@@ -1,6 +1,6 @@
 mod day_02 {
-    use std::fs;
     use std::collections::HashSet;
+    use std::fs;
 
     fn get_file_contents() -> String {
         let input_file_path = "input/03.txt";
@@ -28,7 +28,7 @@ mod day_02 {
     fn get_intersection_set_of_sets(
         set_1: HashSet<char>,
         set_2: HashSet<char>,
-        set_3: HashSet<char>
+        set_3: HashSet<char>,
     ) -> HashSet<char> {
         let mut inter_set_1_2 = HashSet::<char>::new();
         for item in set_1.intersection(&set_2).into_iter() {
@@ -42,9 +42,7 @@ mod day_02 {
         inter_set
     }
 
-    fn get_intersection_set_of_list_of_sets(
-        list_of_sets: Vec<HashSet<char>>
-    ) -> HashSet<char> {
+    fn get_intersection_set_of_list_of_sets(list_of_sets: Vec<HashSet<char>>) -> HashSet<char> {
         let mut last_set_ref = &list_of_sets[0];
 
         let mut new_set = HashSet::<char>::new();
@@ -58,7 +56,6 @@ mod day_02 {
             }
             last_set = new_set.clone();
             last_set_ref = &last_set;
-
         }
         last_set
     }
@@ -91,8 +88,11 @@ mod day_02 {
         let mut sum_priorities: u32 = 0;
 
         for group_idx in 0..(rows.len() / 3) {
-            let group_rows = &rows[group_idx * 3..(group_idx+1) * 3];
-            let group_sets = group_rows.into_iter().map(|row| get_hash_set_of_string(row)).collect();
+            let group_rows = &rows[group_idx * 3..(group_idx + 1) * 3];
+            let group_sets = group_rows
+                .into_iter()
+                .map(|row| get_hash_set_of_string(row))
+                .collect();
             let inter = get_intersection_set_of_list_of_sets(group_sets);
 
             let intersection_item = inter.into_iter().next().unwrap();
@@ -104,9 +104,7 @@ mod day_02 {
     }
 }
 
-
 pub fn day_03() {
-    println!("Part1: {}", day_02::day_03_1());
-    println!("Part2: {}", day_02::day_03_2());
+    println!("Day 03-1: {}", day_02::day_03_1());
+    println!("Day 03-2: {}", day_02::day_03_2());
 }
-
