@@ -1,5 +1,4 @@
 mod day_04 {
-    use std::collections::HashSet;
     use std::fs;
 
     fn get_file_contents() -> String {

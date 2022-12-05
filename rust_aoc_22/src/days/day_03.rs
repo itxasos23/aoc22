@@ -25,23 +25,6 @@ mod day_02 {
         set
     }
 
-    fn get_intersection_set_of_sets(
-        set_1: HashSet<char>,
-        set_2: HashSet<char>,
-        set_3: HashSet<char>,
-    ) -> HashSet<char> {
-        let mut inter_set_1_2 = HashSet::<char>::new();
-        for item in set_1.intersection(&set_2).into_iter() {
-            inter_set_1_2.insert(item.clone());
-        }
-
-        let mut inter_set = HashSet::<char>::new();
-        for item in inter_set_1_2.intersection(&set_3).into_iter() {
-            inter_set.insert(item.clone());
-        }
-        inter_set
-    }
-
     fn get_intersection_set_of_list_of_sets(list_of_sets: Vec<HashSet<char>>) -> HashSet<char> {
         let mut last_set_ref = &list_of_sets[0];
 
@@ -70,8 +53,8 @@ mod day_02 {
             let half_0 = &row[..row.len() / 2];
             let half_1 = &row[row.len() / 2..];
 
-            let mut set_0 = get_hash_set_of_string(half_0);
-            let mut set_1 = get_hash_set_of_string(half_1);
+            let set_0 = get_hash_set_of_string(half_0);
+            let set_1 = get_hash_set_of_string(half_1);
 
             let inter = &set_0.intersection(&set_1);
             let intersection_item = inter.clone().into_iter().next().unwrap();
