@@ -1,6 +1,8 @@
 mod day_05 {
     use std::fs;
     use regex::Regex;
+    use std::collections::HashSet;
+
 
     #[derive(Debug)]
     struct Move {
