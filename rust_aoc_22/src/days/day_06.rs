@@ -1,7 +1,7 @@
 mod day_06 {
-    use std::fs;
     use regex::Regex;
     use std::collections::HashSet;
+    use std::fs;
 
     fn get_file_contents() -> String {
         let input_file_path = "input/06.txt";
@@ -15,22 +15,21 @@ mod day_06 {
             if idx < n {
                 running_hash_set.insert(m_char);
             } else {
-                let char_to_remove = message.as_bytes()[idx-n];
-                
-                if !message.as_bytes()[idx+1-n..idx-1].contains(&char_to_remove) {
-                    running_hash_set.remove(&message.as_bytes()[idx-n]);
+                let char_to_remove = message.as_bytes()[idx - n];
+
+                if !message.as_bytes()[idx + 1 - n..idx - 1].contains(&char_to_remove) {
+                    running_hash_set.remove(&message.as_bytes()[idx - n]);
                 }
 
                 running_hash_set.insert(m_char);
-            } 
-          
+            }
+
             if running_hash_set.len() == n {
                 return Some(idx + 1);
             }
         }
         return None;
-    } 
-
+    }
 
     pub fn day_06_1() -> Option<usize> {
         let message_string = get_file_contents();
@@ -40,7 +39,7 @@ mod day_06 {
     pub fn day_06_2() -> Option<usize> {
         let message_string = get_file_contents();
         return get_position_of_first_distinct_n_gram(&message_string, 14);
-   }
+    }
 }
 
 pub fn day_06() {
