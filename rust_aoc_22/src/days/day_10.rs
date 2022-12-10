@@ -59,8 +59,8 @@ mod day_10 {
     fn print_crt_output(crt_output: Vec<bool>) {
         let mut output_str = "".to_owned();
         for i in 0..6 {
-            for pixel in crt_output[(i*40)..(i+1)*40].iter() {
-              output_str.push_str(if *pixel {"#"} else {"."});
+            for pixel in crt_output[(i * 40)..(i + 1) * 40].iter() {
+                output_str.push_str(if *pixel { "#" } else { "." });
             }
             output_str.push_str("\n");
         }
@@ -87,8 +87,6 @@ mod day_10 {
                 crt_output.push(compute_next_crt_value(crt_output.len(), register));
                 update_register_for_new_line_if_applicable(crt_output.len(), &mut register);
                 register += number;
-
-
             }
         }
         print_crt_output(crt_output);

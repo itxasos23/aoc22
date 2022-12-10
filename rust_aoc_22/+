@@ -1,0 +1,77 @@
+mod day_07 {
+    use std::fs;
+
+    struct FileNode {
+        name: String,
+        path: String,
+        is_dir: bool,
+        size: Option<usize>,
+        children: Vec<FileNode>,
+    }
+
+    fn get_file_contents() -> String {
+        let input_file_path = "input/07.txt";
+        return fs::read_to_string(input_file_path).unwrap();
+    }
+
+    fn perform_cd_command(root: &mut FileNode, mut cwd: & mut str, command_str: &str) {
+        // get node at cwd (should already exist?)
+        let mut cwd_items = cwd.split("/").collect::<Vec<&str>>();
+
+        if command_str.starts_with("cd ..") {
+            let new_str: String = cwd_items[..cwd_items.len()-1].join("/").to_owned();
+            cwd = new_str.as_mut_str();
+        } else {
+            let mut old_cwd = root;
+
+            for path_section in (&mut cwd_items).iter() {
+                let mut cwd_iter = old_cwd.children.iter_mut().filter(|x| x.name == *path_section);
+                old_cwd = cwd_iter.next().unwrap();
+            }
+
+            let new_dir = command_str.split('\n').next().unwrap().split(' ').collect::<Vec<&str>>()[1];
+            
+            if !old_cwd.children.iter().map(|c| c.name.as_str()).collect::<Vec<&str>>().contains(&new_dir) {
+                panic!("Could not find {} of node {}", "a", "b");
+            }
+        }
+    }
+    fn perform_ls_command(root: &mut FileNode, cwd: &mut str, command_str: &str) {todo!();}
+
+
+    pub fn day_07_1() -> Option<usize> {
+        let contents = get_file_contents();
+        let commands_str: Vec<&str> = contents.split("$ ").collect::<Vec<&str>>();
+
+        let mut file_tree = FileNode{
+            name: "/".to_string(),
+            path: "/".to_string(),
+            is_dir: true,
+            size: None,
+            children: vec![],
+        };
+        let mut cwd = "/".to_owned();
+
+        for command_str in commands_str.iter() {
+            let command_line: &str = command_str.lines().next().unwrap(); 
+
+                if command_line.starts_with("cd") {perform_cd_command(&mut file_tree, &mut cwd, &command_str);}
+                else if command_line.starts_with("ls") {perform_ls_command(&mut file_tree, &mut cwd, &command_str);}
+                else {panic!("Unrecognized command: {}", command_line);}
+
+
+        }
+
+        Some(0)
+    }
+
+    pub fn day_07_2() -> Option<usize> {
+        let message_string = get_file_contents();
+        Some(0)
+    }
+}
+
+pub fn day_07() {
+    println!("Day 07-1: todo");
+    println!("Day 07-2: todo");
+}
