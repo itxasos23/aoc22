@@ -8,5 +8,6 @@ fn main() {
     days::day_05::day_05();
     days::day_06::day_06();
     days::day_07::day_07();
+    days::day_08::day_08();
     days::day_10::day_10();
 }

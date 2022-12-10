@@ -1,6 +1,5 @@
 mod day_05 {
     use regex::Regex;
-    use std::collections::HashSet;
     use std::fs;
 
     #[derive(Debug)]

@@ -48,7 +48,7 @@ mod day_07 {
         cwd_node
     }
 
-    fn perform_cd_command(root: &mut FileNode, cwd: &mut String, command_str: &str) {
+    fn perform_cd_command(_root: &mut FileNode, cwd: &mut String, command_str: &str) {
         //println!("DEBUG - Handling cd command.");
         //println!("DEBUG -- cwd before: {}", cwd);
 
@@ -85,7 +85,6 @@ mod day_07 {
     }
     fn perform_ls_command(root: &mut FileNode, cwd: &mut String, command_str: &str) {
         let command_lines = command_str.lines().collect::<Vec<&str>>();
-        let command_line = &command_lines[0];
 
         let contents = &command_lines[1..];
 
