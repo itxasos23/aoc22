@@ -59,7 +59,6 @@ mod day_07 {
             //println!("DEBUG -- cwd before: {}", cwd);
             let cwd_clone = cwd.clone();
             let all_cwd_items = &cwd_clone.split("/").collect::<Vec<&str>>();
-            
 
             //println!("DEBUG -- all_cwd_items: {:?}", all_cwd_items);
 
@@ -230,19 +229,23 @@ mod day_07 {
 
         for child in node.children.iter() {
             let min_of_child = match find_min_dir_to_delete_over_size(child, lower_limit) {
-                    Some(value) => vec![value].clone(),
-                    None => vec![].clone(),
-                };
-                
+                Some(value) => vec![value].clone(),
+                None => vec![].clone(),
+            };
+
             mins_of_children.extend(min_of_child);
         }
 
-        if node.size.unwrap() > lower_limit {mins_of_children.push(node);}
+        if node.size.unwrap() > lower_limit {
+            mins_of_children.push(node);
+        }
 
         if mins_of_children.len() > 0 {
             let mut min_sized_node = mins_of_children.first().unwrap();
             for child in mins_of_children[1..].iter() {
-                if child.size.unwrap() < min_sized_node.size.unwrap() {min_sized_node = child;};
+                if child.size.unwrap() < min_sized_node.size.unwrap() {
+                    min_sized_node = child;
+                };
             }
 
             return Some(min_sized_node);
@@ -305,4 +308,3 @@ pub fn day_07() {
     println!("Day 07-1: {:?}", day_07::day_07_1());
     println!("Day 07-2: {:?}", day_07::day_07_2());
 }
-
