@@ -57,7 +57,7 @@ mod day_09 {
                     //println!("DEBUG -- New link position is {:?}", link);
                 }
                 last_link = link.to_vec();
-            } 
+            }
         }
         let tail_link = &chain[chain.len() - 1];
         tail_visited_locations.insert((tail_link[0].clone(), tail_link[1].clone()));
