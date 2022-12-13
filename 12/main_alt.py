@@ -8,7 +8,7 @@ def main():
     HEIGHT = len(grid)
 
     sx, sy = 0, 0
-    ex, ey = 0, 0
+    ex, ey = 0, 1
 
     directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
