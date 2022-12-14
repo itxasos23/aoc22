@@ -44,7 +44,6 @@ mod day_11 {
         read_to_string(filename).unwrap()
     }
 
-    
     fn build_operation(operation_str: &str) -> Operation {
         let operation = operation_str.split("=").nth(1).unwrap().trim();
         let mut operation_elements = operation.split(" ").into_iter();
@@ -71,10 +70,9 @@ mod day_11 {
         Operation {
             operator,
             first_operand,
-            second_operand
+            second_operand,
         }
     }
-
 
     fn build_monkeys(monkeys: &mut Vec<Monkey>, items: &mut Vec<Item>, contents: &str) {
         for (monkey_idx, monkey_str) in contents.split("\n\n").into_iter().enumerate() {
@@ -88,8 +86,15 @@ mod day_11 {
                 .map(|x| x.parse::<usize>().unwrap())
                 .collect::<Vec<usize>>();
 
-            let parser = |s: &str, pattern: &str| s.split(pattern).nth(1).unwrap().trim().parse::<usize>().unwrap();
-            
+            let parser = |s: &str, pattern: &str| {
+                s.split(pattern)
+                    .nth(1)
+                    .unwrap()
+                    .trim()
+                    .parse::<usize>()
+                    .unwrap()
+            };
+
             let divisor = parser(lines[3], "Test: divisible by");
             let target_if_true = parser(lines[4], "monkey");
             let target_if_false = parser(lines[5], "monkey");
