@@ -128,20 +128,20 @@ class AOC2214:
                     self.cave[new_sand_unit[0]][new_sand_unit[1]] = 2
                     continue
 
-        self.print_cave()
+        # self.print_cave()
         return sand - 1
 
     def part_2(self):
         max_row = max(map(lambda x: x[1], self.rock_edges))
-        
+
         new_cave = []
         for row in self.cave:
-            new_cave_row = [0 for _ in range(len(self.cave))]
+            new_cave_row = [0 for _ in range(len(self.cave)*3//4)]
 
             for item in row:
                 new_cave_row.append(item)
 
-            new_cave_row.extend(0 for _ in range(len(self.cave)))
+            new_cave_row.extend(0 for _ in range(len(self.cave)*3//4))
             new_cave.append(new_cave_row)
 
         self.min_col = self.min_col - len(self.cave)
@@ -150,7 +150,7 @@ class AOC2214:
         for idx, _ in enumerate(self.cave[0]):
             self.cave[max_row + 2][idx] = 1
 
-        self.print_cave()
+        # self.print_cave()
 
         source_blocked = False
 
@@ -191,11 +191,17 @@ class AOC2214:
                     continue
 
         self.print_cave()
-        return sand - 1
+        return sand
 
 
 
 if __name__ == "__main__":
+    aoc = AOC2214("input_ex.txt")
+    print(aoc.part_1())
+    aoc = AOC2214("input_ex.txt")
+    print(aoc.part_2())
+    aoc = AOC2214("input.txt")
+    print(aoc.part_1())
     aoc = AOC2214("input.txt")
     print(aoc.part_2())
 
